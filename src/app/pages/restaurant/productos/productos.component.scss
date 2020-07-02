@@ -1,0 +1,167 @@
+.container {
+  width: 80%;
+}
+
+.banner {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+  height: 300px;
+  border-radius: 60px;
+  margin: 20px auto 50px;
+  display: block;
+  position: relative;
+  background-size: cover;
+
+  .encabezado {
+    //text-align: right;
+    top: 20px;
+    right: 20%;
+    position: absolute;
+
+    h1 {
+      color: var(--secondary-color) !important;
+      font-weight: bold;
+    }
+  }
+}
+
+// CATEGORÍAS 
+
+form{
+  margin: 20px;
+}
+
+.dropup-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid black;
+  min-width: 120px;
+  max-height: 100px;
+  left: 140px;
+  bottom: 25px;
+  z-index: 1;
+}
+
+.dropup-content a {
+  color: black;
+  padding: 10px; 
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.categoria:hover .dropup-content {
+  display: block;
+}
+
+.dropup-content a:hover {
+  background-color: rgba(92 , 138, 255, 0.4);
+}
+
+.categorias {
+  overflow-x: scroll;
+  margin-bottom: 50px;
+
+  .categoria {
+    background-color: #f4f4f4;
+    max-width: 150px;
+    min-width: 150px;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    margin: 10px;
+    position: relative;
+    text-align: center;
+
+    figure {
+      margin: 10px auto 10px;
+    }
+
+    p {
+      font-weight: bold;
+    }
+  }
+}
+
+.gridImg {
+  display: grid;
+  grid-auto-columns: 30%;
+  grid-gap: 1.5rem;
+  grid-auto-flow: row dense;
+  grid-template-columns: repeat(8, 1fr);
+  margin: 40px auto 60px;
+  .imgSelect {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.selected {
+  border-radius: 5px;
+  border: 3px solid rgba(92 , 138, 255, 0.4);
+  padding: 10%;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 20px;
+  font-family: "Quicksand", sans-serif !important;
+}
+
+
+//PRODUCTOS 
+
+.grid {
+  display: grid;
+  grid-auto-columns: 30%;
+  grid-gap: 1.5rem;
+  grid-auto-flow: row dense;
+  grid-template-columns: repeat(3, 1fr);
+
+  .card {
+    grid-column: span 1;
+    border-radius: 10px;
+    overflow: visible;
+
+    figure {
+      height: 200px;
+      margin-bottom: 20px;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+    }
+
+    .info {
+      padding: 15px;
+
+      .opciones {
+        color: #8d8d8d;
+        font-weight: bold;
+      }
+    }
+  }
+}
+

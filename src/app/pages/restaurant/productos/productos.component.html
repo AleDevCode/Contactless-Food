@@ -1,0 +1,204 @@
+<div class="container">
+  <div class="banner">
+    <div class="encabezado">
+      <h1 class="title is-1">La galera</h1>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-one-fifth">
+      <h2 class="subtitle is-3">Categorías</h2>
+    </div>
+    <div class="column">
+      <button class="button" (click)="onAdding()">
+        <i class="fas fa-plus mr"></i>
+        Agregar categoría
+      </button>
+    </div>
+  </div>
+
+  <div class="categorias columns">
+    <div class="column categoria" *ngFor="let c of categorias">
+      <div class="dropup-content">
+        <a (click)= "onEdit(c)"> <i class="fas fa-edit mr"></i>Editar</a>
+        <a (click)= "deleteCategoria(c.id)"> <i class="fas fa-trash-alt mr" ></i>Eliminar</a>
+      </div>
+      <figure class="image is-64x64">
+        <img src="{{ c.categoriaImg.url }}" alt="{{c.categoriaImg.nombre" />
+      </figure>
+      <div class="menu">
+        <p>
+          {{ c.nombre }}
+          <i
+            class="fas fa-ellipsis-v"
+            style="float: right; margin-top: 5px;"
+          ></i>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="subtitle is-2">Platillos</h2>
+  <div class="grid">
+    <div class="card">
+      <figure class="image">
+        <img
+          src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        />
+      </figure>
+      <div class="info">
+        <h3 class="subtitle is-4">Nombre del platillo</h3>
+        <div class="columns opciones">
+          <div class="column">Categoría</div>
+          <div class="column">precio $$</div>
+          <div class="column has-text-right">ícono</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure class="image">
+        <img
+          src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        />
+      </figure>
+      <div class="info">
+        <h3 class="subtitle is-4">Nombre del platillo</h3>
+        <div class="columns opciones">
+          <div class="column">Categoría</div>
+          <div class="column">precio $$</div>
+          <div class="column has-text-right">ícono</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure class="image">
+        <img
+          src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        />
+      </figure>
+      <div class="info">
+        <h3 class="subtitle is-4">Nombre del platillo</h3>
+        <div class="columns opciones">
+          <div class="column">Categoría</div>
+          <div class="column">precio $$</div>
+          <div class="column has-text-right">ícono</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure class="image">
+        <img
+          src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        />
+      </figure>
+      <div class="info">
+        <h3 class="subtitle is-4">Nombre del platillo</h3>
+        <div class="columns opciones">
+          <div class="column">Categoría</div>
+          <div class="column">precio $$</div>
+          <div class="column has-text-right">ícono</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure class="image">
+        <img
+          src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        />
+      </figure>
+      <div class="info">
+        <h3 class="subtitle is-4">Nombre del platillo</h3>
+        <div class="columns opciones">
+          <div class="column">Categoría</div>
+          <div class="column">precio $$</div>
+          <div class="column has-text-right">ícono</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure class="image">
+        <img
+          src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+        />
+      </figure>
+      <div class="info">
+        <h3 class="subtitle is-4">Nombre del platillo</h3>
+        <div class="columns opciones">
+          <div class="column">Categoría</div>
+          <div class="column">precio $$</div>
+          <div class="column has-text-right">ícono</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal is-active" *ngIf="modalCategoria">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Agregar Categoría</p>
+      <button
+        class="delete"
+        aria-label="close"
+        (click)="cancelar()"
+      ></button>
+    </header>
+    <section class="modal-card-body">
+      <form [formGroup]="formCategoria">
+        <div class="field">
+          <label class="label">Nombre de la categoría</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Nombre de la categoría"
+              formControlName="nombre"
+            />
+          </div>
+        </div>
+
+        <input class="input" type="hidden" formControlName="categoriaImg" />
+        <label class="label">Imagen de la categoría</label>
+        <div class="gridImg">
+          <div class="imgSelect" *ngFor="let img of categoriasImg">
+            <img
+              id= "{{img.nombre}}"
+              src="{{ img.url }}"
+              alt="{{ img.nombre }}"
+              (click)="selectedImg(img, $event)"
+            />
+          </div>
+        </div>
+
+        <div class="field is-grouped mt-5" style="float: right;">
+          <div class="control">
+            <button *ngIf = "isAdding"
+              class="button  mr"
+              [disabled]="formCategoria.valid"
+              (click)="onSubmitCategoria()"
+            >
+              Agregar
+            </button>
+            <button *ngIf = "isEditing"
+              class="button is-link"
+              [disabled]="!formCategoria.valid"
+              (click)="onUpdateCategoria()"
+            >
+              Actualizar
+            </button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light" (click)= "cancelar()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </section>
+    <footer class="modal-card-foot"></footer>
+  </div>
+</div>

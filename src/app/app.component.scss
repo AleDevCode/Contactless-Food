@@ -1,0 +1,31 @@
+#menu {
+    min-height: 100vh;
+    height: auto;
+    width: 20vw !important;
+    max-width: 20vw !important;
+    background-color: var(--navbar-color);
+    padding: 20px;
+    .menu-list a {
+      color: var(--font-color);
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .menu-list a:hover {
+      color: white ;
+      background-color: var(--secondary-color) !important;
+    }
+
+
+    figure{
+        margin: 50px auto 10px;
+        object-fit: cover;
+    }
+  }
+  #navbar {
+    display: none;
+  }
+
+  .active-link {
+    color: white !important ;
+    background-color: var(--secondary-color) !important;
+  }

@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #5C8AFF;
+    --secondary-color: #FE9637;
+    --navbar-color: #E9EBFA;
+    --background: #fff;
+    --font-color: #222428;
+
+  
+
+  
+  
+  }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--background);
+    color: var(--font-color) !important;
+  }
+
+
+  .mr {
+    margin-right: 10px;
+  }
