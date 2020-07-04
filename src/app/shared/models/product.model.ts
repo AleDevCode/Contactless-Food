@@ -1,4 +1,6 @@
 import { ImageObject } from './imageObject.model';
+import { Amenidad } from './amenidad.model';
+import { Topping } from './topping.model';
 
 export interface Product {
     id: string;
@@ -8,6 +10,6 @@ export interface Product {
     precio: number;
     restaurant_id: string;
     categoria_id: string; 
-    // amenidades: Amenidad[];
-    // toppings: Topping[];
+    amenidades: Amenidad[];
+    toppings: Topping[];
 }

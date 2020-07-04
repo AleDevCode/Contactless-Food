@@ -5,6 +5,8 @@ import { Categoria } from 'src/app/shared/models/categoria.model';
 import { ImageObject } from 'src/app/shared/models/imageObject.model';
 import { AlertsService } from 'src/app/shared/services/alerts.service';
 import { ToastsService } from 'src/app/shared/services/toasts.service';
+import { ProductosService } from 'src/app/shared/services/productos.service';
+import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
   selector: 'app-productos',
@@ -25,10 +27,14 @@ export class ProductosComponent implements OnInit {
   imgSeleccionada: ImageObject; // Variable necesaria para seleccionar una imagen en el form de categorías
   categoria_id = ''; //Variable necesaria para editar
 
+  //Variables para producto
+  productos : Product[] = [];
+
   constructor(
     private categoriasService: CategoriasService,
     private alertsService: AlertsService,
-    private toastService: ToastsService) {}
+    private toastService: ToastsService,
+    private productosService: ProductosService) {}
 
   ngOnInit() {
     this.restaurant_id = 'nKJ32s91z52WqDcpSzHW';
@@ -48,6 +54,12 @@ export class ProductosComponent implements OnInit {
       .subscribe((categorias: Categoria[]) => {
         this.categorias = categorias;
       });
+
+    //Obtener productos  
+
+    this.productosService.getProductos(this.restaurant_id).valueChanges().subscribe( (prodcutos: Product[]) => {
+      this.productos = prodcutos;
+    })
   }
 
 
@@ -154,6 +166,19 @@ export class ProductosComponent implements OnInit {
     img.classList.add('selected');
   }
 
+
+  //ELIMINAR PRODUCTO 
+
+  deleteProducto(id, producto) {
+    const mensaje = 'El producto será eliminado de forma permanente'; 
+    this.alertsService.openAlertEliminacion(mensaje).then( result  => {
+      if(result.value) {
+        this.productosService.deleteProducto(id, producto).then( () => {
+          this.toastService.toastDelete();
+        });
+      }
+    })
+  }
 
 
   //MÉTODOS AUXILIARES

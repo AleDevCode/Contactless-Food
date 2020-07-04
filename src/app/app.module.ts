@@ -10,12 +10,17 @@ import { ProductosComponent } from './pages/restaurant/productos/productos.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProductComponent } from './pages/restaurant/add-product/add-product.component';
+import { EditProductComponent } from './pages/restaurant/edit-product/edit-product.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ProductosComponent
+    ProductosComponent,
+    AddProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

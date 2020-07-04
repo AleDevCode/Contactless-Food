@@ -1,0 +1,255 @@
+<div class="container">
+    <div class="field is-grouped mt-5" style="float: right;">
+      <div class="control">
+        <button class="button is-primary mr" (click)="submitProducto()">
+          Actualizar
+        </button>
+      </div>
+      <div class="control">
+        <button class="button is-primary-reverse" routerLink="/productos">Cancel</button>
+      </div>
+    </div>
+    <h1 class="title is-1">Editar Producto</h1>
+    
+    <form [formGroup]="formProducto">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Nombre del Producto</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Nombre del producto"
+                formControlName="nombre"
+              />
+            </div>
+          </div>
+  
+          <div class="field">
+            <label class="label">Descripción</label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                placeholder="Descripcion del producto"
+                formControlName="descripcion"
+              ></textarea>
+            </div>
+          </div>
+  
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">Categoria</label>
+                <div class="control">
+                  <div class="select ">
+                    <select formControlName="categoria_id">
+                      <option></option>
+                      <option *ngFor="let c of categorias" value="{{ c.id }}">
+                        {{ c.nombre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">Precio</label>
+                <div class="control">
+                  <input class="input" type="number" formControlName="precio" />
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="field">
+            <label class="label">Elige la foto principal del Producto</label>
+  
+            <div class="control">
+              <input
+                class="input is-rounded"
+                type="file"
+                name="image"
+                (change)="fileProgress($event)"
+              />
+            </div>
+            <div *ngIf="fileUploadProgress">
+              Upload progress: {{ fileUploadProgress }}
+            </div>
+            <div class="image-preview" *ngIf="previewUrl">
+              <img [src]="previewUrl" />
+            </div>
+  
+            <div *ngIf="uploadedFilePath">
+              {{ uploadedFilePath }}
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <!--DIV DE AMENIDADES-->
+          <div class="amenidades">
+            <div class="columns">
+              <div class="column">
+                <div class="amenidades"></div>
+                <h1 class="title is-4">Amenidades</h1>
+              </div>
+              <div class="column">
+                <button class="button is-primary" (click)="addingAmenidad = true">
+                  <i class="fas fa-plus mr"></i>Agregar Amenidad
+                </button>
+              </div>
+            </div>
+  
+            <div class="field" *ngIf="addingAmenidad">
+              <label class="label">Nombre Amenidad</label>
+              <div class="control">
+                <input
+                  id="nombreAmenidad"
+                  class="input"
+                  type="text"
+                  placeholder="Nombre de la amenidad"
+                  [(ngModel)]="nombreAmenidad"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+            </div>
+            <button
+              class="button is-primary-reverse"
+              (click)="addingAmenidad = false"
+              *ngIf="addingAmenidad"
+              style="float: right; margin-bottom: 20px;"
+            >
+              Cancelar
+            </button>
+            <button
+              class="button is-primary mr"
+              (click)="addAmenidad()"
+              *ngIf="addingAmenidad"
+              style="float: right; margin-bottom: 20px;"
+            >
+              <i class="fas fa-plus mr"></i> Agregar
+            </button>
+  
+            <table *ngIf="amenidades.length > 0">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let a of amenidades">
+                  <th>{{ a.nombre }}</th>
+                  <th>
+                    <button
+                      class="button is-danger"
+                      (click)="removeItemFromAmenidades(amenidades, a)"
+                    >
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+          <!--TERMINA DIV DE AMEIDADES-->
+  
+          <!--DIV DE TOPPINGS-->
+  
+          <div class="toppings">
+            <div class="columns">
+              <div class="column">
+                <div class="amenidades"></div>
+                <h1 class="title is-4">Toppings</h1>
+              </div>
+              <div class="column">
+                <button class="button is-primary" (click)="addingTopping = true">
+                  <i class="fas fa-plus mr"></i>Agregar Topping
+                </button>
+              </div>
+            </div>
+  
+            <div class="columns">
+              <div class="column">
+                <div class="field" *ngIf="addingTopping">
+                  <label class="label">Nombre Topping</label>
+                  <div class="control">
+                    <input
+                      id="nombreTopping"
+                      class="input"
+                      type="text"
+                      placeholder="Nombre del topping"
+                      [(ngModel)]="topping.nombre"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field" *ngIf="addingTopping">
+                  <label class="label">Precio Topping</label>
+                  <div class="control">
+                    <input
+                      id="precioTopping"
+                      class="input"
+                      type="number"
+                      [(ngModel)]="topping.precio"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <button
+              class="button is-primary-reverse"
+              (click)="addingTopping = false"
+              *ngIf="addingTopping"
+              style="float: right; margin-bottom: 20px;"
+            >
+              Cancelar
+            </button>
+            <button
+              class="button is-primary mr"
+              (click)="addTopping()"
+              *ngIf="addingTopping"
+              style="float: right; margin-bottom: 20px;"
+            >
+              <i class="fas fa-plus mr"></i> Agregar
+            </button>
+  
+            <table *ngIf="toppings.length > 0">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of toppings">
+                  <th>{{ t.nombre }}</th>
+                  <th>{{ t.precio }}</th>
+                  <th>
+                    <button
+                      class="button is-danger"
+                      (click)="removeItemFromAmenidades(toppings, t)"
+                    >
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+      <!--TERMINA DIV DE TOPPINGS-->
+  
+  
+    </form>
+  </div>
+  

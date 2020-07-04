@@ -47,6 +47,18 @@ form{
   z-index: 1;
 }
 
+.dropup-content2 {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid black;
+  min-width: 120px;
+  max-height: 100px;
+  left: 200px;
+  bottom: 20px;
+  z-index: 1;
+}
 .dropup-content a {
   color: black;
   padding: 10px; 
@@ -55,11 +67,29 @@ form{
   text-align: left;
 }
 
-.categoria:hover .dropup-content {
+.dropup-content2 a {
+  color: black;
+  padding: 10px; 
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.menu:hover .dropup-content {
   display: block;
 }
 
+
+.card:hover .dropup-content2 {
+  display: block;
+}
+
+
 .dropup-content a:hover {
+  background-color: rgba(92 , 138, 255, 0.4);
+}
+
+.dropup-content2 a:hover {
   background-color: rgba(92 , 138, 255, 0.4);
 }
 
