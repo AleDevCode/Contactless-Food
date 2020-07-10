@@ -1,16 +1,31 @@
-<div class="columns">
-  <div class="column" id= "menu">
-    <aside class="menu" >
-      <figure class="image is-128x128" >
-        <img class="is-rounded" src="https://cdn.dribbble.com/users/1355613/screenshots/10555328/media/aaa94d5016561c4faba977333269fb3a.jpg" alt="Profile picture">
-    </figure>
-      
+<div class="columns" >
+  <div class="column" id="menu" *ngIf= "authService.isLogged" >
+    <aside class="menu">
+      <figure class="image is-128x128">
+        <img
+          class="is-rounded"
+          src="https://cdn.dribbble.com/users/1355613/screenshots/10555328/media/aaa94d5016561c4faba977333269fb3a.jpg"
+          alt="Profile picture"
+        />
+      </figure>
+
       <ul class="menu-list">
-        <li><a >Pedidos</a></li>
-        <li><a routerLink="/productos" routerLinkActive="active-link"> Productos</a></li>
+        <li><a routerLink="/ordenes" routerLinkActive="active-link">Pedidos</a></li>
+        <li>
+          <a routerLink="/productos" routerLinkActive="active-link">
+            Productos</a
+          >
+        </li>
       </ul>
-  
-     
+      <div class="navbar-end">
+        <div class="navbar-item">
+            
+                <a class="" (click)="logout()">
+                    <span><i class="fas fa-sign-out-alt"></i></span> Cerrar sesión
+                </a>
+           
+        </div>
+    </div>
     </aside>
   </div>
   <div class="column">

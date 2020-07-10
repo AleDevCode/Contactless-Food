@@ -1,0 +1,44 @@
+.container {
+    padding: 10%;
+    width: 90%;
+  }
+
+  img{
+      max-height: 600px;
+      margin: auto;
+  }
+
+  .t {
+      font-size: 25px;
+      font-weight: bold;
+      margin: 10px auto 10px;
+  }
+  .title{
+      font-size: 60px !important;
+      font-weight: bold;    
+  }
+  .mr {
+    margin-right: 10px;
+  }
+  
+
+  table {
+    width: 80%;
+    margin-top: 20px !important;
+  
+    thead {
+      background-color: var(--secondary-color);
+      color: white !important;
+  
+      th {
+        color: white !important;
+      }
+    }
+  
+    th,
+    td {
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+    }
+  }
+  

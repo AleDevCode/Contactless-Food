@@ -19,23 +19,24 @@
 
   <div class="categorias columns">
     <div class="column categoria" *ngFor="let c of categorias">
-      <div class="dropup-content">
-        <a (click)="onEdit(c)"> <i class="fas fa-edit mr"></i>Editar</a>
-        <a (click)="deleteCategoria(c.id)">
-          <i class="fas fa-trash-alt mr"></i>Eliminar</a
-        >
-      </div>
       <figure class="image is-64x64">
         <img src="{{ c.categoriaImg.url }}" alt="{{c.categoriaImg.nombre" />
       </figure>
-      <div class="menu">
-        <p>
+      <div>
+        <p (click)="getProductosByCategoria(c.id)">
           {{ c.nombre }}
-
-          <i
-            class="fas fa-ellipsis-v"
-            style="float: right; margin-top: 5px;"
-          ></i>
+          <a class="menu">
+            <div class="dropup-content">
+              <a (click)="onEdit(c)"> <i class="fas fa-edit mr"></i>Editar</a>
+              <a (click)="deleteCategoria(c.id)">
+                <i class="fas fa-trash-alt mr"></i>Eliminar</a
+              >
+            </div>
+            <i
+              class="fas fa-ellipsis-v"
+              style="float: right; margin-top: 5px;"
+            ></i
+          ></a>
         </p>
       </div>
     </div>
@@ -46,20 +47,17 @@
       <h2 class="subtitle is-3">Platillos</h2>
     </div>
     <div class="column">
-      <button class="button is-secondary" routerLink="/add-product">
+      <button class="button is-primary mr" routerLink="/add-product">
         <i class="fas fa-plus mr"></i>
         Agregar Platillo
+      </button>
+      <button class="button is-secondary" (click)= "verTodos()">
+        Ver Todos
       </button>
     </div>
   </div>
   <div class="grid">
-    <div class="card" *ngFor="let p of productos">
-      <div class="dropup-content2">
-        <a routerLink="{{ p.id }}"> <i class="fas fa-edit mr"></i>Editar</a>
-        <a (click)="deleteProducto(p.id, p)">
-          <i class="fas fa-trash-alt mr"></i>Eliminar</a
-        >
-      </div>
+    <div class="card" *ngFor="let p of productosFilter">
       <figure class="image">
         <img src="{{ p.foto.url }}" alt="{{ p.foto.nombre }}" />
       </figure>
@@ -69,10 +67,25 @@
           <div class="column">Categoría</div>
           <div class="column">{{ p.precio }}</div>
           <div class="column has-text-right">
-            <i
-              class="fas fa-ellipsis-v"
-              style="float: right; margin-top: 5px;"
-            ></i>
+            <a class="menu2">
+              <i
+                class="fas fa-ellipsis-v"
+                style="float: right; margin-top: 5px;"
+              ></i>
+
+              <div class="dropup-content2">
+                <a routerLink="/details/{{ p.id }}">
+                  <i class="fa fa-info-circle mr" aria-hidden="true"></i
+                  >Detalles</a
+                >
+                <a routerLink="{{ p.id }}">
+                  <i class="fas fa-edit mr"></i>Editar</a
+                >
+                <a (click)="deleteProducto(p.id, p)">
+                  <i class="fas fa-trash-alt mr"></i>Eliminar</a
+                >
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -119,7 +132,7 @@
             <button
               *ngIf="isAdding"
               class="button mr"
-              [disabled]="formCategoria.valid"
+              [disabled]="!(formCategoria.valid && categoriaImgValid)"
               (click)="onSubmitCategoria()"
             >
               Agregar

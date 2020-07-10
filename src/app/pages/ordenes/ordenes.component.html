@@ -1,0 +1,143 @@
+<div class="columns">
+  <div class="menu is-one-third">
+    <div class="column list">
+      <h1 class="title is-2">Lista de Pedidos</h1>
+      <div>
+        <ul>
+          <li id="nueva" (click)="tab($event)">Nueva</li>
+          <li id="preparando" (click)="tab($event)">Preparando</li>
+          <li id="entregando" (click)="tab($event)">Entregado</li>
+        </ul>
+      </div>
+
+      <div class="nuevas" *ngIf="nuevas">
+        <div
+          id="{{ oN.id }}"
+          class="card"
+          *ngFor="let oN of ordenesNuevas"
+          (click)="selectCard(oN, $event)"
+        >
+          <p class="title is-4">Pedido {{ oN.nombre_cliente }}</p>
+          <div class="columns">
+            <div class="column">
+              <p class="title is-6">
+                <i class="fa fa-clock-o" aria-hidden="true"></i> Hora del pedido
+              </p>
+            </div>
+            <div class="column">
+              <p class="has-text-right title is-4">${{ oN.costo_total }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="preparando" *ngIf="preparando">
+        <div
+          id="{{ oP.id }}"
+          class="card"
+          *ngFor="let oP of ordenesPreparando"
+          (click)="selectCard(oP, $event)"
+        >
+          <p class="title is-4">Pedido {{ oP.nombre_cliente }}</p>
+          <div class="columns">
+            <div class="column">
+              <p class="title is-6">
+                <i class="fa fa-clock-o" aria-hidden="true"></i> Hora del pedido
+              </p>
+            </div>
+            <div class="column">
+              <p class="has-text-right title is-4">${{ oP.costo_total }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entregando" *ngIf="entregando">
+        <div
+          id="{{ oE.id }}"
+          class="card"
+          *ngFor="let oE of ordenesEntregando"
+          (click)="selectCard(oE, $event)"
+        >
+          <p class="title is-4">Pedido {{ oE.nombre_cliente }}</p>
+          <div class="columns">
+            <div class="column">
+              <p class="title is-6">
+                <i class="fa fa-clock-o" aria-hidden="true"></i> Hora del pedido
+              </p>
+            </div>
+            <div class="column">
+              <p class="has-text-right title is-4">${{ oE.costo_total }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="container" *ngIf="!orden.nombre_cliente">
+      <h1 class="title is-3">Selecciona una orden para ver los detalles</h1>
+    </div>
+    <div class="container" *ngIf="orden.nombre_cliente">
+      <h1 class="title is-3">Información de pedido</h1>
+      <p class="title is-5">Nombre del cliente: {{ orden.nombre_cliente }}</p>
+
+      <p class="title is-4">Estatus:</p>
+      <p *ngIf="!orden.is_aceptada" class="title is-5">Nueva</p>
+      <p *ngIf="orden.is_en_preparacion" class="title is-5">Preparando</p>
+      <p *ngIf="orden.is_lista" class="title is-5">Entregada</p>
+
+      <div class="producto" *ngFor="let p of orden.productos">
+        <div class="part">
+          <img
+            src="{{ p.product.foto.url }}"
+            alt="{{ p.product.foto.nombre }}"
+          />
+        </div>
+        <div class="part">
+          <p class="title is-6">Nombre</p>
+          <p>{{ p.product.nombre }}</p>
+        </div>
+        <div class="part">
+          <p class="title is-6 has-text-centered">Cantidad</p>
+          <p class="has-text-centered">x{{ p.count }}</p>
+        </div>
+        <div class="part">
+          <p class="title is-6 has-text-centered">Amenidades</p>
+          <p *ngFor="let a of p.product.amenidades" class="has-text-centered">
+            {{ a.nombre }}
+          </p>
+        </div>
+        <div class="part">
+          <p class="title is-6 has-text-centered">Toppings</p>
+          <p *ngFor="let t of p.product.toppings" class="has-text-centered">
+            {{ t.nombre }}
+          </p>
+        </div>
+        <div class="part">
+          <p class="title is-6 has-text-centered">Precio</p>
+          <p class="has-text-centered">$ {{ p.product.precio }}</p>
+        </div>
+      </div>
+
+      <p class="title is-4" style="float: right; margin-top: 30px;">
+        ${{ orden.costo_total }}
+      </p>
+
+      <button
+        *ngIf="!orden.is_aceptada"
+        class="button is-secondary"
+        (click)="preparar(orden)"
+      >
+        Preparar
+      </button>
+      <button
+        *ngIf="orden.is_en_preparacion"
+        class="button is-secondary"
+        (click)="entregar(orden)"
+      >
+        Entregar
+      </button>
+    </div>
+  </div>
+</div>

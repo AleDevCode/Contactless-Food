@@ -3,7 +3,7 @@ import { Amenidad } from './amenidad.model';
 import { Topping } from './topping.model';
 
 export interface Product {
-    id: string;
+    id?: string;
     nombre: string;
     foto: ImageObject;
     descripcion: string;
@@ -12,4 +12,5 @@ export interface Product {
     categoria_id: string; 
     amenidades: Amenidad[];
     toppings: Topping[];
+    fecha: Date; 
 }

@@ -30,4 +30,25 @@ export class ToastsService {
     });
   }
 
+  toastLoginFail() {
+    return  this.toast.error("Error, contraseña o usuario incorrecto", "Mensaje", {
+      positionClass: "toast-bottom-center",
+      timeOut: 3000,
+    });
+  }
+
+  toastLoginFail2(e) {
+    return  this.toast.error(e, "Mensaje", {
+      positionClass: "toast-bottom-center",
+      timeOut: 3000,
+    });
+  } 
+
+  toastLoginSucces() {
+    return  this.toast.success("Inicio de sesión exitoso", "Mensaje", {
+      positionClass: "toast-bottom-center",
+      timeOut: 3000,
+    });
+  }
+
 }

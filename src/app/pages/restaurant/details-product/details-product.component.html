@@ -1,0 +1,58 @@
+<div class="container">
+  <button class="button is-primary-reverse " style="float: right;" (click)= "backClicked()">
+    <i class="fa fa-chevron-left mr" aria-hidden="true"></i>
+    Atrás
+  </button>
+  <button class="button is-primary mr" style="float: right;" routerLink="/productos/{{producto.id}}">
+    <i class="fas fa-edit mr"></i>
+    Editar
+  </button>
+
+  <h1 class="title">{{ producto.nombre }}</h1>
+
+  <div class="columns">
+    <div class="column">
+      <p class="t">Descripción</p>
+      <p>{{ producto.descripcion }}</p>
+      <p class="t">Categoría</p>
+      <p>{{ categoria.nombre }}</p>
+      <p class="t">Precio</p>
+      <p>${{ producto.precio }}</p>
+
+      <p class="t">Amenidades</p>
+      <p *ngIf="producto.amenidades.length == 0">No tiene Amenidades</p>
+      <table *ngIf="producto.amenidades.length > 0">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of producto.amenidades">
+            <th>{{ a.nombre }}</th>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="t">Toppings</p>
+      <p *ngIf="producto.toppings.length == 0">No tiene Toppings</p>
+      <table *ngIf="producto.toppings.length > 0">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of producto.toppings">
+            <th>{{ t.nombre }}</th>
+            <th>${{ t.precio }}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="column">
+      <img src="{{ producto.foto.url }}" alt="" />
+    </div>
+  </div>
+</div>

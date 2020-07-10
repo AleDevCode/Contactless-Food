@@ -1,16 +1,23 @@
 <div class="container">
   <div class="field is-grouped mt-5" style="float: right;">
     <div class="control">
-      <button class="button is-primary mr" (click)="submitProducto()">
+      <button
+        class="button is-primary mr"
+        [disabled]="!(formProducto.valid && file)"
+        (click)="submitProducto()"
+      >
+        <i class="fas fa-plus mr"></i>
         Agregar Producto
       </button>
     </div>
     <div class="control">
-      <button class="button is-primary-reverse">Cancel</button>
+      <button class="button is-primary-reverse" routerLink="/productos">
+        Cancel
+      </button>
     </div>
   </div>
   <h1 class="title is-1">Agregar Producto</h1>
-  
+
   <form [formGroup]="formProducto">
     <div class="columns">
       <div class="column">
@@ -42,7 +49,7 @@
             <div class="field">
               <label class="label">Categoria</label>
               <div class="control">
-                <div class="select ">
+                <div class="select">
                   <select formControlName="categoria_id">
                     <option></option>
                     <option *ngFor="let c of categorias" value="{{ c.id }}">
@@ -92,7 +99,7 @@
           <div class="columns">
             <div class="column">
               <div class="amenidades"></div>
-              <h1 class="title is-4">Amenidades</h1>
+              <h1 class="title is-5 has-text-weight-bold">Amenidades</h1>
             </div>
             <div class="column">
               <button class="button is-primary" (click)="addingAmenidad = true">
@@ -144,7 +151,7 @@
                 <th>
                   <button
                     class="button is-danger"
-                    (click)="removeItemFromAmenidades(amenidades, a)"
+                    (click)="removeItemFromArray(amenidades, a)"
                   >
                     <i class="fas fa-trash-alt"></i>
                   </button>
@@ -162,7 +169,7 @@
           <div class="columns">
             <div class="column">
               <div class="amenidades"></div>
-              <h1 class="title is-4">Toppings</h1>
+              <h1 class="title is-5 has-text-weight-bold">Toppings</h1>
             </div>
             <div class="column">
               <button class="button is-primary" (click)="addingTopping = true">
@@ -235,7 +242,7 @@
                 <th>
                   <button
                     class="button is-danger"
-                    (click)="removeItemFromAmenidades(toppings, t)"
+                    (click)="removeItemFromArray(toppings, t)"
                   >
                     <i class="fas fa-trash-alt"></i>
                   </button>
@@ -248,7 +255,5 @@
     </div>
 
     <!--TERMINA DIV DE TOPPINGS-->
-
-
   </form>
 </div>

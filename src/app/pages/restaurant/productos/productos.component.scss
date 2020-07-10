@@ -42,7 +42,7 @@ form{
   border: 2px solid black;
   min-width: 120px;
   max-height: 100px;
-  left: 140px;
+  left: 120px;
   bottom: 25px;
   z-index: 1;
 }
@@ -54,8 +54,8 @@ form{
   border-radius: 5px;
   border: 2px solid black;
   min-width: 120px;
-  max-height: 100px;
-  left: 200px;
+  max-height: 150px;
+  left: 220px;
   bottom: 20px;
   z-index: 1;
 }
@@ -80,7 +80,7 @@ form{
 }
 
 
-.card:hover .dropup-content2 {
+.menu2:hover .dropup-content2 {
   display: block;
 }
 
@@ -114,6 +114,9 @@ form{
 
     p {
       font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer;
+     // color: var(--primary-color);
     }
   }
 }

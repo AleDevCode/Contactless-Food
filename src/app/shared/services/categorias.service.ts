@@ -7,6 +7,7 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class CategoriasService {
+  COLLECTION = 'categorias';
 
   constructor(
     // Referencia a Firestore
@@ -24,23 +25,23 @@ export class CategoriasService {
   addCategoria(categoria: Categoria) {
     categoria.id = this.afs.createId();
     return this.afs
-      .collection('categorias')
+      .collection(this.COLLECTION)
       .doc(`${categoria.id}`)
       .set(categoria);
   }
 
   updateCategoria(id, categoria) {
     categoria.id = id; 
-    return this.afs.collection('categorias').doc(id).set(categoria);
+    return this.afs.collection(this.COLLECTION).doc(id).set(categoria);
   }
 
 
   getCategoria(id) {
-      return this.afs.collection('categorias').doc(id).valueChanges();
+      return this.afs.collection(this.COLLECTION).doc(id).valueChanges();
    }
 
   getCategorias(restaurant_id) {
-    return this.afs.collection('categorias', ref => ref.where('restaurant_id', '==', restaurant_id)); 
+    return this.afs.collection(this.COLLECTION, ref => ref.where('restaurant_id', '==', restaurant_id).orderBy('fecha', 'desc')); 
   }
 
   deleteCategoria(id) {
@@ -50,7 +51,7 @@ export class CategoriasService {
       })
     })
 
-    return this.afs.collection('categorias').doc(id).delete();
+    return this.afs.collection(this.COLLECTION).doc(id).delete();
   }
   
 }

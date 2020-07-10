@@ -38,6 +38,7 @@ export class AddProductComponent implements OnInit {
   topping = {} as Topping;
   formProducto: FormGroup;
   categorias: Categoria[] = [];
+  file = false;
 
   constructor(
     private imageObject: ImageObjectService,
@@ -82,6 +83,7 @@ export class AddProductComponent implements OnInit {
   fileProgress(fileInput: any) {
     this.fileData = fileInput.target.files[0] as File;
     this.preview();
+    this.file = true;
   }
 
   preview() {
@@ -98,7 +100,7 @@ export class AddProductComponent implements OnInit {
     };
   }
 
-  removeItemFromAmenidades(array, item) {
+  removeItemFromArray(array, item) {
     var i = array.indexOf(item);
     console.log('Entre a remover');
     if (i !== -1) {
@@ -158,26 +160,25 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  submitProducto() {
-    this.subirFoto();
-  }
+
 
   crearProducto(url) {
-    console.log(url, 'URL DE LA IMAGEN');
-    const img = {} as ImageObject;
-    img.nombre = this.formProducto.value.nombre;
-    img.url = url;
+    const img: ImageObject = {
+      nombre: this.formProducto.value.nombre,
+      url: url,
+    };
 
-    const producto = {} as Product;
-    producto.amenidades = this.amenidades;
-    producto.toppings = this.toppings;
-    producto.nombre = this.formProducto.value.nombre;
-    producto.precio = this.formProducto.value.precio;
-    producto.descripcion = this.formProducto.value.descripcion;
-    producto.categoria_id = this.formProducto.value.categoria_id;
-    producto.foto = img;
-    console.log(producto.foto);
-    producto.restaurant_id = this.id;
+    const producto: Product = {
+      amenidades: this.amenidades,
+      toppings: this.toppings,
+      nombre: this.formProducto.value.nombre,
+      precio: this.formProducto.value.precio,
+      descripcion: this.formProducto.value.descripcion,
+      categoria_id: this.formProducto.value.categoria_id,
+      foto: img,
+      restaurant_id: this.id,
+      fecha: new Date(),
+    };
 
     this.productoService.addProducto(producto).then(() => {
       this.toastService.toastSuccess();
@@ -189,5 +190,9 @@ export class AddProductComponent implements OnInit {
         this.router.navigate(['/productos']);
       });
     });
+  }
+
+  submitProducto() {
+    this.subirFoto();
   }
 }

@@ -1,0 +1,39 @@
+<section class="hero is-fullheight">
+  <div class="hero-body has-text-centered">
+    <div class="login">
+      <img src="assets/images/imgg.jpeg" width="150px" />
+      <form>
+        <div class="field">
+          <div class="control">
+            <input
+              type="text"
+              class="input is-medium is-rounded"
+              placeholder="Username"
+              #userName
+              required
+            />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input
+              type="password"
+              class="input is-medium is-rounded"
+              placeholder="Password"
+              #userPassword
+              required
+            />
+          </div>
+        </div>
+        <br />
+        <button
+          class="button is-block is-fullwidth is-primary is-medium is-rounded"
+          type="button"
+          (click)="authService.SignIn(userName.value, userPassword.value)"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

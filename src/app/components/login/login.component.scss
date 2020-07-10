@@ -1,0 +1,17 @@
+.login {
+  border-radius: 25px;
+  padding: 1.5rem;
+  background-color: var(--navbar-color);
+}
+
+.hero.is-fullheight .hero-body {
+  align-items: center;
+  display: flex;
+}
+
+.hero-body {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 3rem 1.5rem;
+  justify-content: center;
+}
